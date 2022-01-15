@@ -1,14 +1,12 @@
 const express = require('express');
-const createUser = require('./createUser');
+const createLogin = require('./createLogin');
 const {
-  emailExists,
-  validateDisplay,
   validateEmail,
   validatePass,
 } = require('../../middlewares/userValidate');
 
 const router = express.Router({ mergeParams: true });
 
-router.post('/', validateDisplay, validateEmail, validatePass, emailExists, createUser);
+router.post('/', validateEmail, validatePass, createLogin);
 
 module.exports = router;
