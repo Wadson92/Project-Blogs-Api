@@ -7,7 +7,8 @@ module.exports = (req, res, next) => {
       return res.status(401).json({ message: 'Token not found' });
     }
     try {
-      jwt.verify(authorization, process.env.JWT_SECRET);
+      const token = jwt.verify(authorization, process.env.JWT_SECRET);
+      req.user = token;
     } catch (error) {
       return res.status(401).json({ message: 'Expired or invalid token' });
     }
